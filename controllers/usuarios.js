@@ -25,7 +25,6 @@ const usuariosGet = async (req, res = response) => {
 //* CREAR USUARIO
 const usuariosPost = async (req, res = response) => {
   const { nombre, correo, password, rol } = req.body;
-  console.log("EL ROL", rol);
   const usuario = new Usuario({ nombre, correo, password, rol });
 
   // Encriptar contraseña

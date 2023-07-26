@@ -32,7 +32,7 @@ const UsuarioSchema = Schema({
   },
 });
 
-//* QUITAR CAMPOS __v y password de la respuesta
+//* Quitar los campos __v y password de la respuesta
 UsuarioSchema.methods.toJSON = function () {
   const { __v, password, _id, ...usuario } = this.toObject();
   usuario.uid = _id;

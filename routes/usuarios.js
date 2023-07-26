@@ -23,6 +23,7 @@ const {
 const router = Router();
 
 router.get("/", usuariosGet);
+
 router.post(
   "/",
   [
@@ -35,8 +36,8 @@ router.post(
     check("correo").custom(existeEmail),
     // check("rol", "No es un rol válido").isIn(['ADMIN_ROLE', 'USER_ROLE'])
     check("rol").custom(esRolValido),
+    validarCampos,
   ],
-  validarCampos,
   usuariosPost
 );
 router.put(
@@ -45,8 +46,8 @@ router.put(
     check("id", "No es un Id válido").isMongoId(),
     check("id").custom(existeUsuarioPorId),
     check("rol").custom(esRolValido),
+    validarCampos
   ],
-  validarCampos,
   usuariosPut
 );
 router.delete(
@@ -57,8 +58,8 @@ router.delete(
     tieneRole("ADMIN_ROLE", "VENTAS_ROLE"),
     check("id", "No es un Id válido").isMongoId(),
     check("id").custom(existeUsuarioPorId),
+    validarCampos
   ],
-  validarCampos,
   usuariosDelete
 );
 module.exports = router;
