@@ -20,7 +20,6 @@ const obtenerCategorias = async (req = request, res = response) => {
 
 //* OBTENER CATEGORIA POR ID
 const obtenerCategoria = async (req = request, res = response) => {
-  const query = { estado: true };
   const { id } = req.params;
   const categoria = await Categoria.findById(id).populate("usuario", "nombre");
 
@@ -61,9 +60,24 @@ const editarCategoria = async (req = request, res = response) => {
   res.json({ categoria });
 };
 
+//* BORRAR CATEGORIA
+const borrarCategoria = async (req = request, res = response) => {
+    const { id } = req.params
+   //* BORRADO VIRTUAL RECOMENDADO
+   const categoriaBorrada = await Categoria.findByIdAndUpdate(id, {estado: false}, {new: true})
+
+   
+   res.json({
+     msg: 'Categoria borrada con éxito',
+    categoriaBorrada
+   });
+
+};
+
 module.exports = {
   crearCategoria,
   obtenerCategorias,
   obtenerCategoria,
   editarCategoria,
+  borrarCategoria
 };
