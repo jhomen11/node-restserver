@@ -5,6 +5,7 @@ const {
   cargarArchivo,
   actualizarImagen,
   mostarImagen,
+  actualizarImagenCluodinary,
 } = require("../controllers/uploadsController");
 const { coleccionesPermitidas } = require("../helpers");
 
@@ -21,7 +22,8 @@ router.put(
     validarArchivosSubir,
     validarCampos,
   ],
-  actualizarImagen
+  actualizarImagenCluodinary
+//   actualizarImagen
 );
 router.get(
   "/:coleccion/:id",
